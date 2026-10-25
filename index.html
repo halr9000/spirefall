@@ -13,8 +13,9 @@
       --sw-accent: #FFC857;      /* transparisteel glare */
       --sw-font-display: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
     }
-    /* Topbar CTA: dark ink on the cream pill (engine default was white-on-cream, 1.3:1) */
-    .sw-topcta{color:var(--sw-bg);background:var(--sw-ink);}
+    /* Topbar CTA: amber glare fill + dark ink — readable over both the white clouds
+       (top of page) and dark scenes; a cream pill vanished into the clouds. */
+    .sw-topcta{color:var(--sw-bg);background:var(--sw-accent);}
     /* Chrome recedes: fade the whole topbar once the fall begins. Route dots and the
        01/06 counter live outside the topbar and stay visible. */
     .sw-topbar{transition:opacity .5s ease, transform .5s ease;}
