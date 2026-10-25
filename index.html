@@ -17,11 +17,6 @@
        re-keys that per level, and the sky level's pale blue vanishes into the
        clouds. Dark fill reads on the white clouds and everywhere else. */
     .sw-topcta{color:var(--sw-ink);background:var(--sw-bg);box-shadow:0 0 0 1px color-mix(in srgb,var(--sw-ink) 35%,transparent);}
-    /* Chrome recedes: fade the whole topbar once the fall begins. Route dots and the
-       01/06 counter live outside the topbar and stay visible. */
-    .sw-topbar{transition:opacity .5s ease, transform .5s ease;}
-    body.sw-chrome-hidden .sw-topbar{opacity:0;transform:translateY(-100%);pointer-events:none;}
-    @media (prefers-reduced-motion:reduce){ .sw-topbar{transition:none;} }
   </style>
 </head>
 <body>
@@ -116,16 +111,6 @@
     // so the old href="#roots" anchor was dead).
     const cta = document.querySelector('.sw-topcta');
     if (cta) cta.addEventListener('click', e => { e.preventDefault(); sw.jumpTo(5); });
-
-    // Fade the topbar chrome once the visitor is past the first viewport.
-    let fadeRaf = 0;
-    addEventListener('scroll', () => {
-      if (fadeRaf) return;
-      fadeRaf = requestAnimationFrame(() => {
-        fadeRaf = 0;
-        document.body.classList.toggle('sw-chrome-hidden', scrollY > innerHeight * 0.9);
-      });
-    }, { passive: true });
   </script>
 </body>
 </html>
