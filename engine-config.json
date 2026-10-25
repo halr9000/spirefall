@@ -1,0 +1,51 @@
+{
+  "architecture": "B",
+  "sections": [
+    {
+      "id": "skyport",
+      "order": 1,
+      "still": ".scratch/spirefall/site_build/assets/skyport.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/skyport.mp4"
+    },
+    {
+      "id": "gardens",
+      "order": 2,
+      "still": ".scratch/spirefall/site_build/assets/gardens.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/gardens.mp4"
+    },
+    {
+      "id": "concourse",
+      "order": 3,
+      "still": ".scratch/spirefall/site_build/assets/concourse.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/concourse.mp4"
+    },
+    {
+      "id": "habdeck",
+      "order": 4,
+      "still": ".scratch/spirefall/site_build/assets/habdeck.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/habdeck.mp4"
+    },
+    {
+      "id": "undercity",
+      "order": 5,
+      "still": ".scratch/spirefall/site_build/assets/undercity.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/undercity.mp4"
+    },
+    {
+      "id": "roots",
+      "order": 6,
+      "still": ".scratch/spirefall/site_build/assets/roots.webp",
+      "clip": ".scratch/spirefall/site_build/assets/vid/roots.mp4"
+    }
+  ],
+  "connectors": [
+    ".scratch/spirefall/site_build/assets/vid/conn1.mp4",
+    ".scratch/spirefall/site_build/assets/vid/conn2.mp4",
+    ".scratch/spirefall/site_build/assets/vid/conn3.mp4",
+    ".scratch/spirefall/site_build/assets/vid/conn4.mp4",
+    ".scratch/spirefall/site_build/assets/vid/conn5.mp4"
+  ],
+  "fallback": {
+    "null_connectors": "engine crossfade is the approved degraded path when G2 selects Architecture A; never use it silently for mode B"
+  }
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SPIREFALL — descent of the megatower</title>
+  <meta name="description" content="Scroll to fall through six levels of a Coruscant-style megatower — skyport to the roots. Graphic-ink scroll-world sample." />
+  <style>
+    :root, .sw-root {
+      --sw-bg: #0B0E14;          /* deep spire night */
+      --sw-ink: #E8E3D5;
+      --sw-ink-soft: #9a94a8;
+      --sw-accent: #FFC857;      /* transparisteel glare */
+      --sw-font-display: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    }
+    /* Topbar CTA: dark ink on the cream pill (engine default was white-on-cream, 1.3:1) */
+    .sw-topcta{color:var(--sw-bg);background:var(--sw-ink);}
+    /* Chrome recedes: fade the whole topbar once the fall begins. Route dots and the
+       01/06 counter live outside the topbar and stay visible. */
+    .sw-topbar{transition:opacity .5s ease, transform .5s ease;}
+    body.sw-chrome-hidden .sw-topbar{opacity:0;transform:translateY(-100%);pointer-events:none;}
+    @media (prefers-reduced-motion:reduce){ .sw-topbar{transition:none;} }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    const sw = mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'SPIREFALL', href: '#top' },
+      cta: { label: 'Reach the roots', href: '#roots' },
+      hint: 'scroll to fall',
+      diveScroll: 1.3,
+      connScroll: 0.9,
+      sections: [
+        {
+          id: 'skyport', label: 'Orbital Crown',
+          still: 'assets/skyport.webp',
+          clip: 'assets/vid/skyport.mp4',
+          accent: '#BFD7EA',
+          scroll: 1.6, linger: 0.45,
+          eyebrow: 'Level 1 — thin sky',
+          title: 'Sun-glare off transparisteel.',
+          body: 'Airspeeders stack in holding spirals above the skyport while clouds drift a kilometer below the deck.',
+          tags: ['Skyport', 'Spire tip'],
+        },
+        {
+          id: 'gardens', label: 'Executive Gardens',
+          still: 'assets/gardens.webp',
+          clip: 'assets/vid/gardens.mp4',
+          accent: '#7FB069',
+          scroll: 1.6, linger: 0.45,
+          eyebrow: 'Level 2 — temperate atria',
+          title: 'Rain on glass, green over void.',
+          body: 'Terraced gardens hang over the drop. The wealthy keep forests here the way others keep pets.',
+          tags: ['Penthouse', 'Hydro-terraces'],
+        },
+        {
+          id: 'concourse', label: 'Grand Concourse',
+          still: 'assets/concourse.webp',
+          clip: 'assets/vid/concourse.mp4',
+          accent: '#E0607E',
+          scroll: 1.6, linger: 0.45,
+          eyebrow: 'Level 3 — urban jungle',
+          title: 'Neon, holo-vendors, traffic canyons.',
+          body: 'The mid-decks never sleep and never dim. Every balcony sells something; every canyon hums.',
+          tags: ['Promenade', 'Neon'],
+        },
+        {
+          id: 'habdeck', label: 'Habitation Decks',
+          still: 'assets/habdeck.webp',
+          clip: 'assets/vid/habdeck.mp4',
+          accent: '#C88A5A',
+          scroll: 1.6, linger: 0.45,
+          eyebrow: 'Level 4 — industrial cave',
+          title: 'Steam, sodium lamps, conduits.',
+          body: 'The working floors. Machinery has priority on the light budget, and everyone knows the detour routes.',
+          tags: ['Industrial', 'Sodium'],
+        },
+        {
+          id: 'undercity', label: 'Undercity',
+          still: 'assets/undercity.webp',
+          clip: 'assets/vid/undercity.mp4',
+          accent: '#6EE7B7',
+          scroll: 1.6, linger: 0.45,
+          eyebrow: 'Level 5 — eternal night',
+          title: 'Bioluminescent moss takes the watch.',
+          body: 'Below the last lamp, the forest floor of the tower glows on its own terms.',
+          tags: ['Bioluminescence', 'No sky'],
+        },
+        {
+          id: 'roots', label: 'The Roots',
+          still: 'assets/roots.webp',
+          clip: 'assets/vid/roots.mp4',
+          accent: '#8B5E3C',
+          eyebrow: 'Level 6 — the foundation',
+          title: 'One light shaft, titanic pilings.',
+          body: 'The cathedral where the tower grips the planet. No one builds here; everyone is built above it.',
+          tags: ['Foundation', 'Abyss'],
+        },
+      ],
+      connectors: [
+        'assets/vid/conn1.mp4',
+        'assets/vid/conn2.mp4',
+        'assets/vid/conn3.mp4',
+        'assets/vid/conn4.mp4',
+        'assets/vid/conn5.mp4',
+      ],
+    });
+
+    // "Reach the roots" → jump to the last section (the engine renders no DOM ids,
+    // so the old href="#roots" anchor was dead).
+    const cta = document.querySelector('.sw-topcta');
+    if (cta) cta.addEventListener('click', e => { e.preventDefault(); sw.jumpTo(5); });
+
+    // Fade the topbar chrome once the visitor is past the first viewport.
+    let fadeRaf = 0;
+    addEventListener('scroll', () => {
+      if (fadeRaf) return;
+      fadeRaf = requestAnimationFrame(() => {
+        fadeRaf = 0;
+        document.body.classList.toggle('sw-chrome-hidden', scrollY > innerHeight * 0.9);
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>
