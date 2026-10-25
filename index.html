@@ -13,9 +13,10 @@
       --sw-accent: #FFC857;      /* transparisteel glare */
       --sw-font-display: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
     }
-    /* Topbar CTA: amber glare fill + dark ink — readable over both the white clouds
-       (top of page) and dark scenes; a cream pill vanished into the clouds. */
-    .sw-topcta{color:var(--sw-bg);background:var(--sw-accent);}
+    /* Topbar CTA: fixed dark fill + cream text. NOT var(--sw-accent) — the engine
+       re-keys that per level, and the sky level's pale blue vanishes into the
+       clouds. Dark fill reads on the white clouds and everywhere else. */
+    .sw-topcta{color:var(--sw-ink);background:var(--sw-bg);box-shadow:0 0 0 1px color-mix(in srgb,var(--sw-ink) 35%,transparent);}
     /* Chrome recedes: fade the whole topbar once the fall begins. Route dots and the
        01/06 counter live outside the topbar and stay visible. */
     .sw-topbar{transition:opacity .5s ease, transform .5s ease;}
